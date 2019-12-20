@@ -1,0 +1,27 @@
+{% extends '_template.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="columns is-centered section">
+    <div class="column is-one-third box">
+        <h1 class="title has-text-primary has-text-centered">Inscription</h1>
+
+{#        <h1>Inscription</h1>#}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {label: '*Email'}) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.pseudo, {label: '*Pseudo'}) }}
+        {{ form_row(registrationForm.nom, {label: '*Nom'}) }}
+        {{ form_row(registrationForm.prenom, {label: '*Prénom'}) }}
+        {{ form_row(registrationForm.telephone, {label: 'Télephone'}) }}
+        {{ form_row(registrationForm.civilite, {label: 'Civilité'}) }}
+        {{ form_row(registrationForm.agreeTerms, {label: 'Conditions d\'utilisation'}) }}
+
+        <button class="button is-primary is-fullwidth" type="submit">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+
+    </div>
+</div>
+{% endblock %}

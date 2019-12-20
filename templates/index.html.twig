@@ -1,0 +1,17 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block content %}
+    <div class="section columns">
+        <div class="search column is-one-third">
+{#       formulaire de recherche    #}
+        {% include 'searchForm.html.twig'%}
+        </div>
+        <div class="list column">
+        {% include 'annonce_list.html.twig'%}
+    </div>
+    </div>
+{% endblock %}

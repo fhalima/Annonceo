@@ -1,0 +1,55 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+        <h2 class="title">
+            Gestion des Commentaires
+        </h2>
+        <p></p>
+
+        <hr>
+        <h3 class="subtitle">
+
+        </h3>
+        {% include 'includes/flash_message.html.twig' %}
+        <div class="table-container is-scrollable">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
+                <thead>
+                <tr>
+                    <th>Id commentaire</th>
+                    <th>Id membre</th>
+                    <th>Id annonce</th>
+                    <th>commentaire</th>
+                    <th>date d'enregistrement</th>
+                    <th>actions</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for commentaire in commentaireList %}
+                    <tr>
+                        <th>{{ commentaire.id }}</th>
+                        <td>{{ commentaire.idUser.id }} - {{ commentaire.idUser.email }}</td>
+                        <td>{{ commentaire.idannonce.id }} - {{ commentaire.idannonce.titre }}</td>
+                        <td>{{ commentaire.commentaire }}</td>
+                        <td>{{ commentaire.dateenregistrement|date('d/m/Y') }}</td>
+                        <td>
+                            <small> <a href=""> <i class="fas fa-search"></i> </a></small>
+                            <small> <a href=""> <i class="far fa-edit"></i> </a></small>
+                            <small> <a href="{{ path('admin_commentaire_delete',{id: commentaire.id}) }}"> <i class="far fa-trash-alt"></i> </a></small>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

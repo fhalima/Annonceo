@@ -1,0 +1,57 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+        <h2 class="title">
+            Gestion des notes
+        </h2>
+        <p></p>
+
+        <hr>
+        <h3 class="subtitle">
+
+        </h3>
+        {% include 'includes/flash_message.html.twig' %}
+        <div class="table-container is-scrollable">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-small ">
+                            <thead>
+                            <tr>
+                                <th>Id note</th>
+                                <th>Id membre1</th>
+                                <th>Id membre2</th>
+                                <th>note</th>
+                                <th>avis</th>
+                                <th>date d'enregistrement</th>
+                                <th>actions</th>
+
+                            </tr>
+                            </thead>
+
+                <tbody>
+                {% for note in noteList %}
+                    <tr>
+                        <th>{{ note.id }}</th>
+                        <td>{{ note.idUser1.id }} - {{ note.idUser1.email}}</td>
+                        <td>{{ note.idUser2.id }} - {{ note.idUser2.email}}</td>
+                        <td>{{ note.note }}</td>
+                        <td>{{ note.avis }}</td>
+                        <td>{{ note.dateenregistrement|date('d/m/Y') }}</td>
+                        <td>
+                            <small> <a href=""> <i class="fas fa-search"></i> </a></small>
+                            <small> <a href=""> <i class="far fa-edit"></i> </a></small>
+                            <small> <a href="{{ path('admin_note_delete',{id: note.id}) }}"> <i class="far fa-trash-alt"></i> </a></small>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

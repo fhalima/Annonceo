@@ -1,0 +1,76 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <a href="">Top 5 des utilisateurs les mieux notés</a>
+    <section class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-small is-centered">
+            <tbody>
+            {% for st1 in stat1 %}
+                <tr>
+                    <th>{{ st1.av|number_format(2) }} {{ st1.nom }}</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <a href="">Top 5 des utilisateurs les plus actifs</a>
+    <section class="table-container ">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-small is-centered">
+            <tbody>
+            {% for st2 in stat2 %}
+                <tr>
+                    <th>{{ st2.co }} </th>
+                    <td>
+                        {{ st2.nom }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <a href="">Top 5 des annonces les plus anciennes</a>
+    <section class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-small is-centered">
+            <tbody>
+            {% for st3 in stat3 %}
+                <tr>
+                    <th>{{ st3.titre }}</th>
+                    <td>
+                        {{ st3.date|date('d/m/Y') }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <a href="">Top 5 des catégories contenant le plus d'annonces</a>
+    <section class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-small is-centered">
+            <tbody>
+            {% for st4 in stat4 %}
+                <tr>
+                    <th>{{ st4.titre }} </th>
+                    <td>
+                        {{ st4.coc }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+{% endblock %}

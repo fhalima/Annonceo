@@ -1,0 +1,90 @@
+{#_template.html.twig #}
+{# hériter de base.html.twig #}
+{% extends "base.html.twig" %}
+{#écraser le contenu du bloc "body"
+défini dans le template parent#}
+{% block body %}
+    {# <ul>
+         <li><a href="{{ path('home') }}">Acceuil</a></li>
+         <li><a href="{{ path('artist_list') }}">Liste des artistes</a></li>
+         <li><a href="#">Connexion</a></li>
+     </ul>
+     {{ test|raw }}#}
+    <nav class="navbar level is-light">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ path('home') }}">
+                <p class="subtitle is-4 has-text-primary">
+                    {#                    <i class="fab fa-korvue"></i><b>RITIK</b>#}
+                    <i class="fab fa-accusoft"></i><b>NNANCEO</b>
+
+
+                </p>
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu level-left">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#">
+                    Qui sommes nous?
+                </a>
+                <a class="navbar-item" href="#">
+                    Contact
+                </a>
+            </div>
+        </div>
+        <a class="navbar-item">
+            <form action="#">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input name="query" type="text" class="input is-small" placeholder="Recherche ..." required>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-primary is-small">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </a>
+        <div id="navbarBasicExample" class="navbar-menu navbar-end level-right">
+            <div class="navbar-start">
+                {% if is_granted('ROLE_USER') %}
+                    <a class="navbar-item" href="{{ path('user_profile') }}">
+                        <i class="fas fa-user"> </i>
+                        <p> &nbsp;{{ app.user.pseudo }}</p>
+                    </a>
+                    <a class="navbar-item" href="{{ path('app_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p> &nbsp;Deconnexion</p>
+                    </a>
+                {% else %}
+                    <a class="navbar-item" href="{{ path('app_login') }}">
+                        <i class="fas fa-user"> </i>
+                        <p> &nbsp;Espace membre</p>
+                    </a>
+                    <a class="navbar-item" href="{{ path('app_register') }}">
+                        <i class="fas fa-address-card"></i>
+                        <p> &nbsp;Inscription</p>
+                    </a>
+                {% endif %}
+                {% if(is_granted('ROLE_ADMIN'))%}
+                    <a href="{{ path('admin_dashboard') }}" class="navbar-item">
+                        <i class="fas fa-shield-alt"></i>
+                        Back Office
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+
+{% endblock %}

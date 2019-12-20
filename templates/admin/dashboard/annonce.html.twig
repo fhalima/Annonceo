@@ -1,0 +1,108 @@
+{% extends "admin/_template.html.twig" %}
+
+{% block title %}
+    Back Office
+{% endblock %}
+
+{% block content %}
+    {#    {% set action = '' %}#}
+    {#    {% set annonce_curr = '' %}#}
+    <div class="section">
+        <h2 class="title">
+            Gestion des annonces
+        </h2>
+        <p></p>
+
+        <hr>
+        <h3 class="subtitle">
+
+        </h3>
+
+        <section class="table-container">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-small is-fullwidth">
+                <thead>
+                <tr class="">
+                    <th>Id annonce</th>
+                    <th>titre</th>
+                    <th>description courte</th>
+                    <th>description longue</th>
+                    <th>prix</th>
+                    <th>photo</th>
+                    <th>pays</th>
+                    <th>ville</th>
+                    <th>adresse</th>
+                    <th>cp</th>
+                    <th>membre</th>
+                    <th>catégorie</th>
+                    <th>date d'enregistrement</th>
+                    <th>actions</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for annonce in annonceList %}
+                    <tr>
+                        <th>{{ annonce.id }}</th>
+                        <td>{{ annonce.titre }}</td>
+                        <td>{{ annonce.descriptioncourte }}</td>
+                        <td>{{ annonce.descriptionlongue }}</td>
+                        <td>{{ annonce.prix|number_format(2) }} &euro;</td>
+                        <td>
+                            <figure class="image is-300x300">
+                                <img src="{{ annonce.photo }}" alt="Image">
+                            </figure>
+                        </td>
+                        <td>{{ annonce.pays }}</td>
+                        <td>{{ annonce.ville }}</td>
+                        <td>{{ annonce.adresse }}</td>
+                        <td>{{ annonce.cp }}</td>
+                        <td>{{ annonce.idUser.pseudo }}</td>
+                        <td>{{ annonce.idCategorie.titre }}</td>
+                        <td>{{ annonce.dateenregistrement|date('d/m/Y') }}</td>
+                        <td>
+                            <small> <a href="{{ path('annonce_page',{id:annonce.id }) }}"> <i class="fas fa-search"></i></a></small>
+                            <small> <a href="{{ path('admin_annonce_update',{id: annonce.id}) }}"> <i
+                                            class="far fa-edit"></i></a></small>
+                            <small> <a href="{{ path('admin_annonce_delete',{id: annonce.id}) }}"> <i
+                                            class="far fa-trash-alt"></i> </a></small>
+                        </td>
+                    </tr>
+                    {#                    {{ (annonce_curr) }}#}
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </section>
+        <hr>
+        {% include 'includes/flash_message.html.twig' %}
+        <div class="form_container columns ">
+            <div class="column is-half">
+                {{ form_start(annonce_form) }}
+
+                {{ form_row(annonce_form.titre , {label: 'Titre', value: annonce_curr.titre}) }}
+                {{ form_row(annonce_form.description_courte, {label: 'Description_longue', value: annonce_curr.descriptioncourte}) }}
+                {{ form_row(annonce_form.description_longue, {label: 'Description longue', value: annonce_curr.descriptionlongue}) }}
+                {{ form_row(annonce_form.prix, {label: 'Prix', value: annonce_curr.prix}) }}
+                {{ form_row(annonce_form.photo, {label: 'Image principale', value: annonce_curr.photo}) }}
+            </div>
+
+            <div class="column is-half">
+                {{ form_row(annonce_form.pays, {label: 'Pays', value: annonce_curr.pays}) }}
+                {{ form_row(annonce_form.ville, {label: 'Ville', value: annonce_curr.ville}) }}
+                {{ form_row(annonce_form.adresse, {label: 'Adresse', value: annonce_curr.adresse}) }}
+                {{ form_row(annonce_form.cp, {label: 'Code Postal', value: annonce_curr.cp}) }}
+                {#            {{ form_row(annonce_form.user, {label: 'Id Membre'}) }}#}
+                {#            {{ form_row(annonce_form.categorie, {label: 'Categorie'}) }}#}
+
+                <button class="button is-primary is-center" type="submit" id="submit" name="submit">
+                    {{ annonce_button }}
+                </button>
+
+                {{ form_end(annonce_form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

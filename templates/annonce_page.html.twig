@@ -1,0 +1,55 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    {{ annonce.titre }}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <div class="level">
+            <h2 class="title level-left">
+                {{ annonce.titre }}
+                <span class="tag is-primary">
+                {{ annonce.idUser.averageNote|number_format(2) }}/10
+            </span>
+            </h2>
+            <a href="{{ path('home') }}" class="button is-success level-right" type="submit">
+                Contacter {{ annonce.iduser.pseudo }}
+            </a>
+        </div>
+
+        <article class="media">
+            <div>
+                {#            <p class=" media-left">#}
+                <figure class="media-left image is-300x300">
+                    <img src="{{ annonce.photo }}" alt="image">
+                </figure>
+            </div>
+            {#            </p>#}
+            <div class="media-content">
+                <div class="content">
+
+                    <p>
+                        <strong> Description: </strong><br>
+                        {{ annonce.descriptionlongue }}
+                    </p>
+
+                </div>
+            </div>
+
+        </article>
+    </div>
+
+    <div class="section">
+        <div class="level">
+            <small class="level-item"><i class="fas fa-calendar-alt">Date de publication: {{annonce.dateenregistrement|date('d/m/Y')}}  {{annonce.dateenregistrement|date('H:i')}}</i> </small>
+            <small class="level-item"><i class="fas fa-user"> {{ annonce.iduser.pseudo }} </i></small>
+            <small class="level-item"><i class="fas fa-euro-sign"> {{ annonce.prix }} &#8364;</i></small>
+            <small class="level-item"><i class="fa fa-map-marker" aria-hidden="true">Adresse: {{ annonce.adresse }},  {{ annonce.cp }} {{ annonce.ville }},  {{ annonce.pays }}</i></small>
+        </div>
+        <div>
+
+        </div>
+    </div>
+{% endblock %}
+

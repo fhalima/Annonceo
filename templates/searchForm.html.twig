@@ -1,0 +1,27 @@
+<div class="is-centered section">
+    <div class="">
+
+        {# formulaire de connexion #}
+        <section class="section has-background-white-ter">
+        <h3>
+{#            {% include 'includes/flash_message.html.twig'%}#}
+
+            {{ form_start(search_form) }}
+
+            {{ form_row(search_form.categorie, {label: 'Categorie'}) }}
+            {{ form_row(search_form.region, {label: 'Region'}, {choices: categories[0]}) }}
+            {{ form_row(search_form.membre, {label: 'Membre'}) }}
+            {{ form_row(search_form.prix, {label: 'Prix'}) }}
+
+            <button class="button is-primary is-fullwidth" type="submit">
+                Rechercher
+            </button>
+
+            {{ form_end(search_form) }}
+
+
+        </h3>
+        </section>
+
+    </div>
+</div>
